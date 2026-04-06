@@ -1,5 +1,4 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
   "builds": [
     {
@@ -30,10 +29,13 @@
       }
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/config/wsgi.py"
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "config/wsgi.py"
     }
   ]
 }

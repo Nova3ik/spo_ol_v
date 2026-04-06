@@ -20,6 +20,18 @@
     <a class="pdf-back-link" href="{% url course.url_name %}">&#1053;&#1072;&#1079;&#1072;&#1076;</a>
   </div>
 
+  <div class="pdf-mobile-open">
+    <a
+      class="pdf-mobile-open__button"
+      href="{% url 'material_file' course.slug material.slug %}"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Открыть материал
+    </a>
+    <p class="pdf-mobile-open__note">На телефоне материал открывается во внешнем PDF-просмотрщике.</p>
+  </div>
+
   <div
     class="pdf-viewer-shell"
     id="pdfViewerShell"
@@ -30,7 +42,7 @@
     <iframe
       id="pdfViewerFrame"
       class="pdf-viewer-frame"
-      src="{% url 'material_file' course.slug material.slug %}#toolbar=0&navpanes=0&scrollbar=0&statusbar=0&messages=0&zoom=page-width"
+      data-pdf-src="{% url 'material_file' course.slug material.slug %}#toolbar=0&navpanes=0&scrollbar=0&statusbar=0&messages=0&zoom=page-width"
       title="{{ material.title }}"
       loading="lazy"
       referrerpolicy="same-origin"
@@ -42,6 +54,16 @@
   (function () {
     var viewerShell = document.getElementById("pdfViewerShell");
     var viewerFrame = document.getElementById("pdfViewerFrame");
+    var useEmbeddedViewer = window.matchMedia("(min-width: 769px)").matches;
+
+    if (!useEmbeddedViewer) {
+      return;
+    }
+
+    if (viewerFrame && viewerFrame.dataset.pdfSrc) {
+      viewerFrame.src = viewerFrame.dataset.pdfSrc;
+    }
+
     var blockedShortcuts = [
       { key: "s", ctrl: true },
       { key: "s", ctrl: true, shift: true },
