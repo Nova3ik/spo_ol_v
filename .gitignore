@@ -1,7 +1,10 @@
 venv/
 .venv/
+.vercel-venv/
 instance/*.db
+db.sqlite3
 __pycache__/
 .venv/
 *.pyc
-.env.example
+.env
+staticfiles/

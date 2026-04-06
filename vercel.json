@@ -1,31 +1,15 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "config/wsgi.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.12",
-        "excludeFiles": [".venv/**", "venv/**", "boto3/**"]
-      }
-    },
-    {
-      "src": "build.sh",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "staticfiles_build"
-      }
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "sh build.sh",
+  "functions": {
+    "config/wsgi.py": {
+      "excludeFiles": "{.vercel-venv/**,.venv/**,venv/**,static/**,staticfiles/**,staticfiles_build/**,__pycache__/**,app/tests.py,README.md,build.sh,db.sqlite3}"
     }
-  ],
-  "routes": [
+  },
+  "rewrites": [
     {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "config/wsgi.py"
+      "source": "/(.*)",
+      "destination": "/config/wsgi.py"
     }
   ]
 }
