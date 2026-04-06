@@ -1,4 +1,5 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
   "builds": [
     {
@@ -23,19 +24,16 @@
           "build.sh",
           "db.sqlite3",
           "static/**",
-          "staticfiles/**"
+          "staticfiles/**",
+          "staticfiles_build/**"
         ]
       }
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "config/wsgi.py"
+      "source": "/(.*)",
+      "destination": "/config/wsgi.py"
     }
   ]
 }
