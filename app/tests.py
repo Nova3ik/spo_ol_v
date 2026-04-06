@@ -19,7 +19,7 @@ class CoursePagesTests(TestCase):
                 self.assertEqual(response.status_code, 200)
                 self.assertContains(response, 'class="test-cta"', count=1)
                 self.assertContains(response, 'class="test-cta__info"', count=1)
-                self.assertContains(response, '/media/Notebook.svg', count=1)
+                self.assertContains(response, reverse("public_media_asset", args=["notebook-icon"]), count=1)
                 self.assertContains(response, 'role="tooltip"', count=1)
                 self.assertContains(
                     response,
@@ -65,7 +65,7 @@ class CoursePagesTests(TestCase):
             response,
             reverse("material_viewer", args=["discrete-math", "boolean-functions"]),
         )
-        self.assertContains(response, "/media/diestel-obl%20.png", count=1)
+        self.assertContains(response, reverse("public_media_asset", args=["discrete-hero"]), count=1)
         self.assertContains(
             response,
             "https://docs.google.com/forms/d/e/1FAIpQLSfqMcbR8fQiVMitvAHAmMSV2Dzb06w1Icx9Vz59BNdYxhuhKA/viewform?usp=dialog",

@@ -16,6 +16,11 @@ COURSE_HERO_IMAGES = {
     "discrete-math": "I1KoN.jpg",
 }
 
+PUBLIC_MEDIA_ASSETS = {
+    "notebook-icon": ("Notebook.svg", "image/svg+xml"),
+    "discrete-hero": ("diestel-obl .png", "image/png"),
+}
+
 COURSE_HERO_SUBTITLES = {
     "mathematical-modeling": "Модели, анализ результатов и практические занятия по прикладным математическим задачам.",
     "probability-theory": "Случайные события, распределения и статистические методы для анализа данных.",
@@ -54,6 +59,15 @@ def page_hero_image(request, course_slug):
 
 def favicon(request):
     return _serve_media_asset("favicon.png", "image/png", "Favicon not found.")
+
+
+def public_media_asset(request, asset_name):
+    asset = PUBLIC_MEDIA_ASSETS.get(asset_name)
+    if not asset:
+        raise Http404("Asset not found.")
+
+    filename, content_type = asset
+    return _serve_media_asset(filename, content_type, "Asset not found.")
 
 
 def _get_course_hero_context(course_slug):

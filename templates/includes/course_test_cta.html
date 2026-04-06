@@ -1,5 +1,4 @@
 {% load static %}
-{% get_media_prefix as media_prefix %}
 <div class="test-cta">
   {% if test_href %}
     <a class="animated-button" href="{{ test_href }}" target="_blank" rel="noopener noreferrer">
@@ -23,7 +22,7 @@
     >
       <img
         class="test-cta__icon-image"
-        src="{{ media_prefix }}Notebook.svg"
+        src="{% url 'public_media_asset' 'notebook-icon' %}"
         alt=""
         aria-hidden="true"
       >

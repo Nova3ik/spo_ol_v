@@ -4,8 +4,7 @@
 {% block title %}Дискретная математика{% endblock %}
 
 {% block content %}
-{% get_media_prefix as media_prefix %}
-<section class="course-hero hero-discrete" data-page-hero style="--hero-image: url('{{ media_prefix }}diestel-obl%20.png');">
+<section class="course-hero hero-discrete" data-page-hero style="--hero-image: url('{% url 'public_media_asset' 'discrete-hero' %}');">
   <div class="container">
     <div class="page-hero__content">
       <p class="page-hero__eyebrow">{{ hero_eyebrow }}</p>
