@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
       {
-        "src": "SPO_ol/wsgi.py",
+        "src": "config/wsgi.py",
         "use": "@vercel/python",
         "config": {
           "maxLambdaSize": "15mb",
@@ -25,7 +25,7 @@
       },
       {
         "src": "/(.*)",
-        "dest": "SPO_ol/wsgi.py"
+        "dest": "config/wsgi.py"
       }
     ]
   }
