@@ -1,0 +1,26 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ошибка сервера | Простая математика</title>
+  <link rel="icon" type="image/png" href="{% url 'favicon' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="error-document">
+  <main class="error-standalone" aria-labelledby="error-title">
+    <section class="error-panel error-panel--500">
+      <div class="error-panel__backdrop" aria-hidden="true">500</div>
+      <div class="error-panel__content">
+        <p class="error-panel__eyebrow">Внутренняя ошибка</p>
+        <h1 class="error-panel__title" id="error-title">Ошибка сервера</h1>
+        <p class="error-panel__text">
+          На нашей стороне произошла ошибка. Попробуйте обновить страницу немного позже или вернуться на главную.
+        </p>
+        <a class="error-panel__button" href="{% url 'home' %}">На главную</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

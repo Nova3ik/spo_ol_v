@@ -1,0 +1,26 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Некорректный запрос | Простая математика</title>
+  <link rel="icon" type="image/png" href="{% url 'favicon' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="error-document">
+  <main class="error-standalone" aria-labelledby="error-title">
+    <section class="error-panel error-panel--400">
+      <div class="error-panel__backdrop" aria-hidden="true">400</div>
+      <div class="error-panel__content">
+        <p class="error-panel__eyebrow">Ошибка запроса</p>
+        <h1 class="error-panel__title" id="error-title">Некорректный запрос</h1>
+        <p class="error-panel__text">
+          Сервер не смог обработать этот запрос. Проверьте адрес страницы или повторите действие немного позже.
+        </p>
+        <a class="error-panel__button" href="{% url 'home' %}">На главную</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

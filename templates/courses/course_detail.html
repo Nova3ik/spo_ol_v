@@ -1,0 +1,46 @@
+﻿{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ course.title }} | Портфолио преподавателя{% endblock %}
+
+{% block content %}
+<section class="course-hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('{% static course.hero_image %}');">
+  <div class="container course-hero-inner">
+    <h1>{{ course.title }}</h1>
+  </div>
+</section>
+
+<section class="container course-description-block">
+  <h2>Описание курса</h2>
+  <p>{{ course.description }}</p>
+  <a class="btn btn-light" href="{{ course.test_url }}">Пройти тестирование</a>
+</section>
+
+<section class="container topics-list-block" id="topics">
+  <h2>Список тем</h2>
+  <ul class="topics-list">
+    {% for topic in course.topics %}
+      <li><a href="#topic-{{ topic.id }}">{{ topic.title }}</a></li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% for topic in course.topics %}
+  <section id="topic-{{ topic.id }}" class="topic-section container">
+    <div class="topic-bar">{{ topic.title }}</div>
+    <div class="topic-content">
+      <div class="materials-grid">
+        {% for material in topic.materials %}
+          <article class="material-card">
+            <div class="material-thumb" style="background-image: url('{% static material.thumb %}');"></div>
+            <div class="material-body">
+              <h3>{{ material.title }}</h3>
+              <a href="{{ material.url }}" target="_blank" rel="noopener">Открыть материал</a>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endfor %}
+{% endblock %}

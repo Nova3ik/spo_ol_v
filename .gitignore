@@ -1,0 +1,7 @@
+venv/
+.venv/
+instance/*.db
+__pycache__/
+.venv/
+*.pyc
+.env.example

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Численные методы{% endblock %}
+
+{% block content %}
+<section class="course-hero hero-numerical" data-page-hero style="--hero-image: url('{{ hero_image_url }}');">
+  <div class="container">
+    <div class="page-hero__content">
+      <p class="page-hero__eyebrow">{{ hero_eyebrow }}</p>
+      <h1>Численные методы</h1>
+      <p>{{ hero_subtitle }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="container course-description">
+  <h2>Описание курса</h2>
+  <p>Курс охватывает методы приближенных вычислений: решение уравнений, интерполяцию, численное интегрирование и решение систем уравнений.</p>
+  {% include "includes/course_test_cta.html" with test_href="https://docs.google.com/forms/d/e/1FAIpQLSffUi-BWgwtwzN4o86Iq-JgRYcmBOgm7v6LOLFo_ZWuxNHCow/viewform?usp=dialog" tooltip_id="numerical" %}
+</section>
+
+<section class="container topics-list-block">
+  <h2>Список тем</h2>
+  <ul>
+    <li><a>Тема 1. Решение нелинейных уравнений</a></li>
+    <li><a>Тема 2. Интерполяция и аппроксимация</a></li>
+    <li><a>Тема 3. Численное интегрирование</a></li>
+  </ul>
+</section>
+
+<section id="topic-num-1" class="container topic-section">
+  <div class="topic-title">Тема 1. Решение нелинейных уравнений</div>
+  <div class="topic-content">
+    <a class="material-card" href="{% url 'material_viewer' 'numerical-methods' 'function-limit-lecture' %}">Лекция: предел функции</a>
+    <a class="material-card" href="{% url 'material_viewer' 'numerical-methods' 'function-limit-presentation' %}">Презентация: предел функции</a>
+  </div>
+</section>
+
+<section id="topic-num-2" class="container topic-section">
+  <div class="topic-title">Тема 2. Интерполяция и аппроксимация</div>
+  <div class="topic-content">
+    <a class="material-card" href="{% url 'material_viewer' 'numerical-methods' 'methodical-guidelines' %}">Методические указания</a>
+    <a class="material-card" href="{% url 'material_viewer' 'numerical-methods' 'practice-5-2' %}">Практическое занятие 5.2</a>
+  </div>
+</section>
+
+<section id="topic-num-3" class="container topic-section">
+  <div class="topic-title">Тема 3. Численное интегрирование</div>
+  <div class="topic-content">
+    <a class="material-card" href="{% url 'material_viewer' 'numerical-methods' 'integral-calculus' %}">Интегральное исчисление</a>
+    <a class="material-card" href="{% url 'material_viewer' 'numerical-methods' 'self-check-questions' %}">Вопросы для самопроверки</a>
+  </div>
+</section>
+{% endblock %}

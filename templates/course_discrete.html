@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Дискретная математика{% endblock %}
+
+{% block content %}
+{% get_media_prefix as media_prefix %}
+<section class="course-hero hero-discrete" data-page-hero style="--hero-image: url('{{ media_prefix }}diestel-obl%20.png');">
+  <div class="container">
+    <div class="page-hero__content">
+      <p class="page-hero__eyebrow">{{ hero_eyebrow }}</p>
+      <h1>Дискретная математика</h1>
+      <p>{{ hero_subtitle }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="container course-description">
+  <h2>Описание курса</h2>
+  <p>Курс включает основы логики, теории множеств, графов и комбинаторики с разбором прикладных задач.</p>
+  {% include "includes/course_test_cta.html" with test_href="https://docs.google.com/forms/d/e/1FAIpQLSecqPoa9KbAX1jwg6-nihV2_g1RhC0CrK6ITvndHwoO18HBIg/viewform?usp=dialog" tooltip_id="discrete" %}
+</section>
+
+<section class="container topics-list-block">
+  <h2>Список тем</h2>
+  <ul>
+    <li><a>Тема 1. Алгебра высказываний</a></li>
+    <li><a>Тема 2. Теория множеств и отношения</a></li>
+    <li><a>Тема 3. Основы теории графов</a></li>
+  </ul>
+</section>
+
+<section id="topic-disc-1" class="container topic-section">
+  <div class="topic-title">Тема 1. Алгебра высказываний</div>
+  <div class="topic-content">
+    <a class="material-card" href="{% url 'material_viewer' 'discrete-math' 'boolean-functions' %}">Лекция: булевы функции</a>
+    <a class="material-card" href="{% url 'material_viewer' 'discrete-math' 'zhegalkin-polynomial' %}">Полином Жегалкина</a>
+    <a class="material-card" href="{% url 'material_viewer' 'discrete-math' 'karnaugh-maps' %}">Минимизация нормальных форм. Карты Карно</a>
+  </div>
+</section>
+
+<section id="topic-disc-2" class="container topic-section">
+  <div class="topic-title">Тема 2. Теория множеств и отношения</div>
+  <div class="topic-content">
+    <a class="material-card" href="{% url 'material_viewer' 'discrete-math' 'relations' %}">Отношения</a>
+    <a class="material-card" href="{% url 'material_viewer' 'discrete-math' 'predicate-logic' %}">Логика предикатов. Кванторы</a>
+    <a class="material-card" href="{% url 'material_viewer' 'discrete-math' 'first-order-logic' %}">Логика первого порядка</a>
+  </div>
+</section>
+
+<section id="topic-disc-3" class="container topic-section">
+  <div class="topic-title">Тема 3. Основы теории графов</div>
+  <div class="topic-content">
+    <a class="material-card" href="{% url 'material_viewer' 'discrete-math' 'graphs' %}">Графы</a>
+    <a class="material-card" href="https://docs.google.com/forms/d/e/1FAIpQLSfqMcbR8fQiVMitvAHAmMSV2Dzb06w1Icx9Vz59BNdYxhuhKA/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">К тесту</a>
+  </div>
+</section>
+{% endblock %}

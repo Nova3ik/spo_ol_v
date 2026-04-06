@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Теория вероятностей и математическая статистика{% endblock %}
+
+{% block content %}
+<section class="course-hero hero-probability" data-page-hero style="--hero-image: url('{{ hero_image_url }}');">
+  <div class="container">
+    <div class="page-hero__content">
+      <p class="page-hero__eyebrow">{{ hero_eyebrow }}</p>
+      <h1>Теория вероятностей и математическая статистика</h1>
+      <p>{{ hero_subtitle }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="container course-description">
+  <h2>Описание курса</h2>
+  <p>Курс формирует понимание вероятностных моделей, распределений и базовых статистических методов для анализа данных.</p>
+  {% include "includes/course_test_cta.html" with test_href="https://docs.google.com/forms/d/e/1FAIpQLSfZzcQezed6M1sAPFf-UZG1AAPXH2AWlOIPpKtpWphSFTPkwg/viewform?usp=dialog" tooltip_id="probability" %}
+</section>
+
+<section class="container topics-list-block">
+  <h2>Список тем</h2>
+  <ul>
+    <li><a>Тема 1. Случайные события и вероятности</a></li>
+    <li><a>Тема 2. Элементы математической статистики</a></li>
+  </ul>
+</section>
+
+<section id="topic-prob-1" class="container topic-section">
+  <div class="topic-title">Тема 1. Случайные события и вероятности, и тестирование</div>
+  <div class="topic-content">
+    <a class="material-card" href="{% url 'material_viewer' 'probability-theory' 'bernoulli-formula' %}">Формула Бернулли</a>
+    <a class="material-card" href="https://docs.google.com/forms/d/e/1FAIpQLScLF7D2mX3RsxH02cu1d8KCRZ42aSIL8UZnIUOjw4MqTTzu1A/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">К тесту</a>
+  </div>
+</section>
+
+<section id="topic-prob-3" class="container topic-section">
+  <div class="topic-title">Тема 2. Элементы математической статистики, и тестирование</div>
+  <div class="topic-content">
+    <a class="material-card" href="{% url 'material_viewer' 'probability-theory' 'math-tests-collection' %}">Сборник тестов по математике</a>
+    <a class="material-card" href="https://docs.google.com/forms/d/e/1FAIpQLSeSZWVIbyYUwWrafOGThKHTwZAljAM458Lo8qFEb9T9oce2CQ/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">К тесту</a>
+  </div>
+</section>
+{% endblock %}

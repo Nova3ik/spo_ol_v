@@ -1,0 +1,64 @@
+﻿{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Простая математика для обучающихся СПО{% endblock %}</title>
+  <link rel="icon" type="image/png" href="{% url 'favicon' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script defer src="{% static 'js/main.js' %}"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="{% url 'home' %}">
+        <span class="brand__title">Простая математика</span>
+        <span class="brand__subtitle">для обучающихся СПО</span>
+      </a>
+      <nav class="nav" id="siteNav" aria-label="Основное меню">
+        <ul class="nav__list" id="navVisible">
+          <li class="nav__item">
+            <a class="{% if request.resolver_match.url_name == 'home' %}is-active{% endif %}" href="{% url 'home' %}">Главная страница</a>
+          </li>
+          <li class="nav__item">
+            <a class="{% if request.resolver_match.url_name == 'course_matmodel' %}is-active{% endif %}" href="{% url 'course_matmodel' %}">Математическое моделирование</a>
+          </li>
+          <li class="nav__item">
+            <a class="{% if request.resolver_match.url_name == 'course_probability' %}is-active{% endif %}" href="{% url 'course_probability' %}">Теория вероятностей и математическая статистика</a>
+          </li>
+          <li class="nav__item">
+            <a class="{% if request.resolver_match.url_name == 'course_numerical' %}is-active{% endif %}" href="{% url 'course_numerical' %}">Численные методы</a>
+          </li>
+          <li class="nav__item">
+            <a class="{% if request.resolver_match.url_name == 'course_discrete' %}is-active{% endif %}" href="{% url 'course_discrete' %}">Дискретная математика</a>
+          </li>
+        </ul>
+        <div class="nav__more" id="navMore">
+          <button
+            class="nav__more-btn"
+            id="moreBtn"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Ещё ▾
+          </button>
+          <ul class="nav__more-list" id="navHidden"></ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Простая математика для обучающихся СПО</p>
+      <p>Контакт: o.n.shestakova@mpt.ru</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Тесты{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+  <h2>Тесты</h2>
+  <p>Выберите тест для прохождения.</p>
+
+  <div class="courses-grid">
+    {% for quiz in quizzes %}
+      <div class="course-card">
+        <h3>{{ quiz.title }}</h3>
+        <p>Активный тест</p>
+        <a class="cta-button" href="{% url 'quiz_detail' slug=quiz.slug %}">Перейти к тесту</a>
+      </div>
+    {% empty %}
+      <p>Нет доступных тестов.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

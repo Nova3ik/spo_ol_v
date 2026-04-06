@@ -1,0 +1,27 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Publications | Teacher Portfolio{% endblock %}
+
+{% block content %}
+<section class="container page-block">
+  <h1>Publications</h1>
+  <p>Articles and conference materials related to teaching practice.</p>
+</section>
+
+<section class="container cards-grid">
+  {% for publication in publications %}
+    <article class="card">
+      <h2>{{ publication.title }}</h2>
+      <p><strong>Venue:</strong> {{ publication.venue }}</p>
+      <p><strong>Year:</strong> {{ publication.year }}</p>
+      <p>{{ publication.annotation }}</p>
+      <p><a href="{{ publication.link }}">Read more</a></p>
+    </article>
+  {% empty %}
+    <article class="card">
+      <h2>No publications yet</h2>
+      <p>Publication list will be updated soon.</p>
+    </article>
+  {% endfor %}
+</section>
+{% endblock %}

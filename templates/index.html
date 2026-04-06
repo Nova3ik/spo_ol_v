@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+  <section class="course-info-section">
+    <h2>О курсе</h2>
+    <p class="course-description">
+      Курс "Простая математика для обучающихся СПО" направлен на укрепление базовых математических знаний.
+      Он охватывает ключевые темы моделирования, дискретной математики и теории вероятностей.
+    </p>
+
+    <div class="course-images">
+      <div class="image-placeholder">
+        <img src="https://via.placeholder.com/400x250?text=Изображение+1" alt="Изображение 1">
+      </div>
+      <div class="image-placeholder">
+        <img src="https://via.placeholder.com/400x250?text=Изображение+2" alt="Изображение 2">
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="additional-info-section">
+    <h2>Дополнительная информация</h2>
+    <div class="info-links">
+      <h3>Сайт МПТ</h3>
+      <ul>
+        <li><a href="https://mpt.ru/">https://mpt.ru/</a></li>
+      </ul>
+    </div>
+  </section>
+</div>
+{% endblock %}

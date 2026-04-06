@@ -1,0 +1,27 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Portfolio | Teacher Portfolio{% endblock %}
+
+{% block content %}
+<section class="container page-block">
+  <h1>Teaching Portfolio</h1>
+  <p>Selected projects and educational initiatives.</p>
+</section>
+
+<section class="container cards-grid">
+  {% for project in projects %}
+    <article class="card">
+      <h2>{{ project.title }}</h2>
+      <p><strong>Period:</strong> {{ project.period }}</p>
+      <p>{{ project.description }}</p>
+      <p><strong>Technologies:</strong> {{ project.technologies|join:", " }}</p>
+      <p><strong>Result:</strong> {{ project.result }}</p>
+    </article>
+  {% empty %}
+    <article class="card">
+      <h2>No projects yet</h2>
+      <p>Projects will be published soon.</p>
+    </article>
+  {% endfor %}
+</section>
+{% endblock %}

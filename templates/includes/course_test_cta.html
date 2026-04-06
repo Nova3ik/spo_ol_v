@@ -1,0 +1,39 @@
+{% load static %}
+{% get_media_prefix as media_prefix %}
+<div class="test-cta">
+  {% if test_href %}
+    <a class="animated-button" href="{{ test_href }}" target="_blank" rel="noopener noreferrer">
+  {% else %}
+    <button class="animated-button" type="button" aria-disabled="true">
+  {% endif %}
+      <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="text">К тесту</span>
+      <span class="circle"></span>
+      <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  {% if test_href %}
+    </a>
+  {% else %}
+    </button>
+  {% endif %}
+  <div class="test-cta__info-wrap">
+    <button
+      class="test-cta__info"
+      type="button"
+      aria-label="Информация о результате теста"
+    >
+      <img
+        class="test-cta__icon-image"
+        src="{{ media_prefix }}Notebook.svg"
+        alt=""
+        aria-hidden="true"
+      >
+    </button>
+    <div
+      class="test-cta__tooltip"
+      id="test-cta-tooltip-{{ tooltip_id }}"
+      role="tooltip"
+    >
+      Данные результата теста отправляются к преподавателю
+    </div>
+  </div>
+</div>

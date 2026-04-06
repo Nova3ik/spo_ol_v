@@ -1,0 +1,38 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Contact | Teacher Portfolio{% endblock %}
+
+{% block content %}
+<section class="container page-block">
+  <h1>Contact</h1>
+  <p>Use this form to send a message. No database persistence is used.</p>
+</section>
+
+<section class="container form-shell">
+  <form method="post" novalidate>
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+      <div class="field-errors">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <label for="id_name">Name</label>
+    {{ form.name }}
+    {% if form.name.errors %}<div class="field-errors">{{ form.name.errors }}</div>{% endif %}
+
+    <label for="id_email">Email</label>
+    {{ form.email }}
+    {% if form.email.errors %}<div class="field-errors">{{ form.email.errors }}</div>{% endif %}
+
+    <label for="id_subject">Subject</label>
+    {{ form.subject }}
+    {% if form.subject.errors %}<div class="field-errors">{{ form.subject.errors }}</div>{% endif %}
+
+    <label for="id_message">Message</label>
+    {{ form.message }}
+    {% if form.message.errors %}<div class="field-errors">{{ form.message.errors }}</div>{% endif %}
+
+    <button class="button" type="submit">Send message</button>
+  </form>
+</section>
+{% endblock %}

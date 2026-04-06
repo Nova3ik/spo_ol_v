@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="course-hero course-hero--material" data-page-hero style="--hero-image: url('{{ hero_image_url }}');">
+  <div class="container">
+    <div class="page-hero__content page-hero__content--material">
+      <p class="page-hero__eyebrow">{{ hero_eyebrow }}</p>
+      <h1>{{ material.title }}</h1>
+      <p>{{ hero_subtitle }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="container pdf-viewer-page">
+  <div class="pdf-viewer-header">
+    <div class="pdf-viewer-meta">
+      <p class="pdf-viewer-topic">{{ course.title }} / {{ topic.title }}</p>
+      <p class="pdf-viewer-title">{{ material.title }}</p>
+    </div>
+    <a class="pdf-back-link" href="{% url course.url_name %}">&#1053;&#1072;&#1079;&#1072;&#1076;</a>
+  </div>
+
+  <div
+    class="pdf-viewer-shell"
+    id="pdfViewerShell"
+    data-page-count="{{ page_count }}"
+    data-total-ratio="{{ total_page_ratio }}"
+    oncontextmenu="return false;"
+  >
+    <iframe
+      id="pdfViewerFrame"
+      class="pdf-viewer-frame"
+      src="{% url 'material_file' course.slug material.slug %}#toolbar=0&navpanes=0&scrollbar=0&statusbar=0&messages=0&zoom=page-width"
+      title="{{ material.title }}"
+      loading="lazy"
+      referrerpolicy="same-origin"
+    ></iframe>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var viewerShell = document.getElementById("pdfViewerShell");
+    var viewerFrame = document.getElementById("pdfViewerFrame");
+    var blockedShortcuts = [
+      { key: "s", ctrl: true },
+      { key: "s", ctrl: true, shift: true },
+      { key: "p", ctrl: true },
+      { key: "u", ctrl: true },
+      { key: "o", ctrl: true },
+      { key: "j", ctrl: true },
+      { key: "k", ctrl: true },
+      { key: "a", ctrl: true },
+      { key: "c", ctrl: true },
+      { key: "x", ctrl: true },
+      { key: "F12" },
+      { key: "i", ctrl: true, shift: true },
+      { key: "j", ctrl: true, shift: true },
+      { key: "c", ctrl: true, shift: true },
+      { key: "p", ctrl: true, shift: true }
+    ];
+
+    function shouldBlockShortcut(event) {
+      return blockedShortcuts.some(function (shortcut) {
+        return (
+          event.key.toLowerCase() === shortcut.key.toLowerCase() &&
+          Boolean(event.ctrlKey) === Boolean(shortcut.ctrl) &&
+          Boolean(event.shiftKey) === Boolean(shortcut.shift)
+        );
+      });
+    }
+
+    ["contextmenu", "selectstart", "dragstart", "copy", "cut", "paste"].forEach(function (eventName) {
+      document.addEventListener(eventName, function (event) {
+        event.preventDefault();
+      });
+    });
+
+    ["mousedown", "mouseup", "auxclick"].forEach(function (eventName) {
+      document.addEventListener(eventName, function (event) {
+        if (event.button === 2) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      }, true);
+    });
+
+    if (viewerShell) {
+      function updateViewerHeight() {
+        if (!viewerFrame) {
+          return;
+        }
+
+        var shellWidth = Math.max(viewerShell.clientWidth - 14, 320);
+        var totalRatio = parseFloat(viewerShell.dataset.totalRatio || "1");
+        var pageCount = parseInt(viewerShell.dataset.pageCount || "1", 10);
+        var pageGap = window.innerWidth <= 480 ? 14 : 18;
+        var computedHeight = Math.ceil(shellWidth * totalRatio + pageCount * pageGap + 24);
+
+        viewerFrame.style.height = computedHeight + "px";
+      }
+
+      viewerShell.addEventListener("pointerdown", function (event) {
+        if (event.pointerType === "mouse" && event.button !== 0) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      }, true);
+
+      viewerShell.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      });
+
+      updateViewerHeight();
+      window.addEventListener("resize", updateViewerHeight);
+    }
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "ContextMenu" || event.key === "PrintScreen") {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
+
+      if (event.altKey) {
+        var loweredKey = event.key.toLowerCase();
+        if (loweredKey === "f" || loweredKey === "e") {
+          event.preventDefault();
+          event.stopPropagation();
+          return;
+        }
+      }
+
+      if (shouldBlockShortcut(event)) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    });
+  })();
+</script>
+{% endblock %}

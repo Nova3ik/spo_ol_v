@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Математическое моделирование{% endblock %}
+
+{% block content %}
+<section class="course-hero hero-matmodel" data-page-hero style="--hero-image: url('{{ hero_image_url }}');">
+  <div class="container">
+    <div class="page-hero__content">
+      <p class="page-hero__eyebrow">{{ hero_eyebrow }}</p>
+      <h1>Математическое моделирование</h1>
+      <p>{{ hero_subtitle }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="container course-description">
+  <h2>Описание курса</h2>
+  <p>Курс посвящен построению математических моделей реальных процессов, анализу параметров и интерпретации полученных результатов.</p>
+  {% include "includes/course_test_cta.html" with test_href="https://docs.google.com/forms/d/e/1FAIpQLScNFffyPsiqE8v73M3UJAGT_edtwcDz5RWqjtHj20k_ls2_yw/viewform?usp=dialog" tooltip_id="matmodel" %}
+</section>
+
+<section class="container topics-list-block">
+  <h2>Список тем</h2>
+  <ul>
+    <li><a>Тема 1. Классификация моделей</a></li>
+    <li><a>Тема 2. Анализ и интерпретация результатов</a></li>
+    <li><a>Тема 3. Тестирование</a></li>
+  </ul>
+</section>
+
+<section id="topic-model-2" class="container topic-section">
+  <div class="topic-title">Тема 1. Классификация моделей</div>
+  <div class="topic-content">
+    <a class="material-card" href="{% url 'material_viewer' 'mathematical-modeling' 'potential-method' %}">Метод потенциалов</a>
+    <a class="material-card" href="{% url 'material_viewer' 'mathematical-modeling' 'matrix-operations-practice' %}">Практическое занятие: операции над матрицами</a>
+  </div>
+</section>
+
+<section id="topic-model-3" class="container topic-section">
+  <div class="topic-title">Тема 2. Анализ и интерпретация результатов</div>
+  <div class="topic-content">
+    <a class="material-card" href="{% url 'material_viewer' 'mathematical-modeling' 'linear-systems-practice' %}">Практическое занятие: системы линейных уравнений</a>
+    <a class="material-card" href="{% url 'material_viewer' 'mathematical-modeling' 'differential-practice' %}">Практическое занятие: применение дифференциала</a>
+  </div>
+</section>
+
+<section id="topic-model-4" class="container topic-section">
+  <div class="topic-title">Тема 3. Тестирование</div>
+  <div class="topic-content">
+    <a
+      class="material-card"
+      href="https://docs.google.com/forms/d/e/1FAIpQLSdS3s4kutZ4w1P6dOcXAedx-7Hd2wiNQvI0Yd_l-ut-dDcxKA/viewform?usp=dialog"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Пройти тест 1 В1
+    </a>
+    <a
+      class="material-card"
+      href="https://docs.google.com/forms/d/e/1FAIpQLSfsUKlTUsdObmFF7kZfmz1iOUlxXEmRqdD2tG-nFnOSerQKzA/viewform?usp=dialog"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Пройти тест 2 В2
+    </a>
+  </div>
+</section>
+{% endblock %}

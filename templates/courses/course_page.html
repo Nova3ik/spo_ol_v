@@ -1,0 +1,44 @@
+<section class="course-hero {{ course.hero_class }}">
+  <div class="container">
+    <h1>{{ course.title }}</h1>
+  </div>
+</section>
+
+<section class="container course-description">
+  <h2>Описание курса</h2>
+  <p>{{ course.description }}</p>
+  <button class="animated-button" type="button" aria-disabled="true">
+    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="text">К тесту</span>
+    <span class="circle"></span>
+    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</section>
+
+<section class="container topics-list-block">
+  <h2>Список тем</h2>
+  <ul>
+    {% for topic in course.topics %}
+      <li><a href="#{{ topic.id }}">{{ topic.title }}</a></li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% for topic in course.topics %}
+  <section id="{{ topic.id }}" class="container topic-section">
+    <div class="topic-title">{{ topic.title }}</div>
+    <div class="topic-content">
+      {% for material in topic.materials %}
+        {% if material.is_available %}
+          <a class="material-card" href="{% url 'material_viewer' course.slug material.slug %}">
+            {{ material.title }}
+          </a>
+        {% else %}
+          <div class="material-card is-disabled" aria-disabled="true">
+            {{ material.title }}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+{% endfor %}

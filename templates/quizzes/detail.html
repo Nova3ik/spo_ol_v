@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}{{ quiz.title }} - Тест{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+  <h2>{{ quiz.title }}</h2>
+  <form id="quizForm" method="post" action="{% url 'quiz_submit' slug=quiz.slug %}">
+    {% csrf_token %}
+
+    {% for q in quiz.questions.all %}
+      <div class="quiz-question">
+        <h3>{{ forloop.counter }}. {{ q.prompt }}</h3>
+
+        {% if q.type == 'single_choice' %}
+          {% for choice in q.choices.all %}
+            <label class="quiz-option">
+              <input type="radio" name="q_{{ q.id }}" value="{{ choice.id }}">
+              {{ choice.text }}
+            </label>
+          {% endfor %}
+        {% elif q.type == 'multi_choice' %}
+          {% for choice in q.choices.all %}
+            <label class="quiz-option">
+              <input type="checkbox" name="q_{{ q.id }}" value="{{ choice.id }}">
+              {{ choice.text }}
+            </label>
+          {% endfor %}
+        {% elif q.type == 'text' %}
+          <input class="quiz-text" type="text" name="q_{{ q.id }}" placeholder="Введите ответ">
+        {% endif %}
+      </div>
+      <div class="section-divider"></div>
+    {% endfor %}
+
+    <button class="cta-button" type="submit">Отправить ответы</button>
+  </form>
+
+  <div id="quizResult" class="quiz-result" hidden></div>
+</div>
+
+<script>
+  const form = document.getElementById('quizForm');
+  const result = document.getElementById('quizResult');
+
+  if (window.fetch) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const csrf = formData.get('csrfmiddlewaretoken');
+
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'X-CSRFToken': csrf,
+        },
+        body: formData,
+      });
+
+      if (!res.ok) {
+        result.hidden = false;
+        result.textContent = 'Ошибка отправки. Попробуйте снова.';
+        return;
+      }
+
+      const data = await res.json();
+      result.hidden = false;
+      result.innerHTML = `Результат: ${data.score} из ${data.max_score}. <a href="/attempts/${data.attempt_id}/">Открыть результат</a>`;
+    });
+  }
+</script>
+{% endblock %}
