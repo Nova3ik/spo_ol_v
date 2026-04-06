@@ -1241,7 +1241,7 @@ main {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .pdf-mobile-open {
     display: block;
   }

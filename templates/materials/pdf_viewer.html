@@ -54,7 +54,7 @@
   (function () {
     var viewerShell = document.getElementById("pdfViewerShell");
     var viewerFrame = document.getElementById("pdfViewerFrame");
-    var useEmbeddedViewer = window.matchMedia("(min-width: 769px)").matches;
+    var useEmbeddedViewer = window.matchMedia("(min-width: 641px)").matches;
 
     if (!useEmbeddedViewer) {
       return;
