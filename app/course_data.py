@@ -23,7 +23,7 @@ COURSES = {
             },
             {
                 "id": "topic-model-2",
-                "title": "Тема 2. Классификация моделей",
+                "title": "Тема 1. Классификация моделей",
                 "materials": [
                     {
                         "slug": "potential-method",
@@ -41,7 +41,7 @@ COURSES = {
             },
             {
                 "id": "topic-model-3",
-                "title": "Тема 3. Анализ и интерпретация результатов",
+                "title": "Тема 2. Анализ и интерпретация результатов",
                 "materials": [
                     {
                         "slug": "linear-systems-practice",
@@ -81,27 +81,27 @@ COURSES = {
                     },
                 ],
             },
-            {
-                "id": "topic-prob-2",
-                "title": "Тема 2. Случайные величины и распределения",
-                "materials": [
-                    {
-                        "slug": "distributions-placeholder-1",
-                        "title": "Материал будет добавлен",
-                        "file": None,
-                        "is_available": False,
-                    },
-                    {
-                        "slug": "distributions-placeholder-2",
-                        "title": "Материал будет добавлен",
-                        "file": None,
-                        "is_available": False,
-                    },
-                ],
-            },
+            # {
+            #     "id": "topic-prob-2",
+            #     "title": "Тема 2. Случайные величины и распределения",
+            #     "materials": [
+            #         {
+            #             "slug": "distributions-placeholder-1",
+            #             "title": "Материал будет добавлен",
+            #             "file": None,
+            #             "is_available": False,
+            #         },
+            #         {
+            #             "slug": "distributions-placeholder-2",
+            #             "title": "Материал будет добавлен",
+            #             "file": None,
+            #             "is_available": False,
+            #         },
+            #     ],
+            # },
             {
                 "id": "topic-prob-3",
-                "title": "Тема 3. Элементы математической статистики",
+                "title": "Тема 2. Элементы математической статистики",
                 "materials": [
                     {
                         "slug": "math-tests-collection",
